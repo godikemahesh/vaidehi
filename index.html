@@ -1,0 +1,841 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vaidehi Events · Korutla</title>
+<meta name="description" content="Vaidehi Events, Korutla: wedding, haldi, engagement, birthday, house warming and festival decorations. Call 8500878184.">
+<meta name="theme-color" content="#4a0a12">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Poppins:wght@300;400;500;600&family=Tiro+Telugu&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+:root{
+  --maroon:#4a0a12; --maroon-2:#6b0f1a; --crimson:#b3122e; --rose:#e0486b;
+  --gold:#e8b04a; --gold-2:#f6d27a; --marigold:#f59e0b; --saffron:#ff7a1a;
+  --ivory:#fff8ec; --cream:#fbefd9; --ink:#1f0a0d; --leaf:#2f6b3a; --sage:#3e4d3a;
+  --muted:#7a5b55;
+  --radius:22px;
+  --shadow:0 30px 60px -20px rgba(74,10,18,.35);
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:Poppins,system-ui,sans-serif;background:var(--ivory);color:var(--ink);overflow-x:hidden;line-height:1.6}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.serif{font-family:"Cormorant Garamond",Georgia,serif}
+.te{font-family:"Tiro Telugu",serif}
+.script{font-family:"Great Vibes",cursive}
+.wrap{width:min(1200px,100%);margin:0 auto;padding:0 20px}
+
+/* ---------- Preloader ---------- */
+#loader{position:fixed;inset:0;z-index:999;background:radial-gradient(circle at 50% 45%,#7a1222,#2a0509 70%);display:grid;place-items:center;transition:opacity .8s var(--ease),visibility .8s}
+#loader.done{opacity:0;visibility:hidden}
+#loader .lg{width:130px;height:130px}
+#loader .lg path,#loader .lg circle{stroke-dasharray:600;stroke-dashoffset:600;animation:draw 1.8s var(--ease) forwards}
+#loader .lt{margin-top:18px;text-align:center;color:var(--gold-2);letter-spacing:.5em;font-size:.8rem;opacity:0;animation:fadeUp 1s .9s forwards}
+#loader .lt b{display:block;font-family:"Cormorant Garamond";font-size:2rem;letter-spacing:.15em;color:#fff;font-weight:600}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ---------- Progress + cursor ---------- */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:200;background:linear-gradient(90deg,var(--saffron),var(--gold-2),var(--rose))}
+#glow{position:fixed;width:340px;height:340px;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(circle,rgba(246,210,122,.18),transparent 65%);transform:translate(-50%,-50%);transition:opacity .3s;opacity:0}
+@media (hover:hover){#glow{opacity:1}}
+
+/* ---------- Nav ---------- */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:.4s var(--ease)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
+nav.scrolled{background:rgba(42,5,9,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 10px 30px -10px rgba(0,0,0,.5)}
+nav.scrolled .wrap{height:64px}
+.brand{display:flex;align-items:center;gap:10px;color:#fff}
+.brand svg{width:42px;height:42px;flex:none}
+.brand b{font-family:"Cormorant Garamond";font-size:1.45rem;letter-spacing:.06em;line-height:1;font-weight:700}
+.brand small{display:block;font-size:.58rem;letter-spacing:.42em;color:var(--gold-2);margin-top:3px}
+.links{display:flex;gap:30px;align-items:center}
+.links a{color:#f8e9d6;font-size:.88rem;letter-spacing:.04em;position:relative}
+.links a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-6px;height:1.5px;width:100%;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease)}
+.links a:not(.btn):hover::after{transform:scaleX(1);transform-origin:left}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:999px;font-weight:500;font-size:.92rem;letter-spacing:.02em;transition:transform .35s var(--ease),box-shadow .35s;position:relative;overflow:hidden;isolation:isolate}
+.btn-gold{background:linear-gradient(135deg,var(--gold-2),var(--gold) 50%,var(--saffron));color:var(--maroon);box-shadow:0 12px 30px -10px rgba(245,158,11,.7)}
+.btn-gold::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.7) 50%,transparent 70%);transform:translateX(-120%);animation:shine 3.5s infinite;z-index:-1}
+@keyframes shine{60%,100%{transform:translateX(120%)}}
+.btn-ghost{border:1px solid rgba(246,210,122,.55);color:#fff}
+.btn:hover{transform:translateY(-3px)}
+.btn svg{width:18px;height:18px}
+.burger{display:none;width:44px;height:44px;border-radius:50%;border:1px solid rgba(246,210,122,.5);position:relative}
+.burger span{position:absolute;left:12px;right:12px;height:1.5px;background:#fff;transition:.4s var(--ease)}
+.burger span:nth-child(1){top:17px}.burger span:nth-child(2){top:25px}
+.menu-open .burger span:nth-child(1){top:21px;transform:rotate(45deg)}
+.menu-open .burger span:nth-child(2){top:21px;transform:rotate(-45deg)}
+#mmenu{position:fixed;inset:0;z-index:90;background:radial-gradient(circle at 80% 0,#7a1222,#2a0509 70%);display:flex;flex-direction:column;justify-content:center;padding:0 32px;clip-path:circle(0 at calc(100% - 42px) 38px);transition:clip-path .8s var(--ease)}
+.menu-open #mmenu{clip-path:circle(150% at calc(100% - 42px) 38px)}
+#mmenu a{font-family:"Cormorant Garamond";font-size:2.6rem;color:#fff;line-height:1.5;opacity:0;transform:translateY(20px);transition:.6s var(--ease)}
+#mmenu a i{font-style:normal;font-family:Poppins;font-size:.75rem;color:var(--gold);margin-right:14px;vertical-align:middle}
+.menu-open #mmenu a{opacity:1;transform:none}
+#mmenu .mm-foot{margin-top:40px;color:var(--gold-2);font-size:.9rem;opacity:.85}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;min-height:100svh;background:radial-gradient(ellipse at 50% 30%,#8a1527 0%,#5a0c17 40%,#2a0509 100%);color:#fff;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;padding:140px 0 110px}
+.hero::after{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M30 0l4 26 26 4-26 4-4 26-4-26L0 30l26-4z' fill='%23f6d27a' fill-opacity='.05'/%3E%3C/svg%3E");pointer-events:none}
+#petals{position:absolute;inset:0;z-index:3;pointer-events:none}
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-bg img{width:100%;height:100%;object-fit:cover;transform:scale(1.15);animation:kenburns 22s ease-in-out infinite alternate}
+.hero-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,rgba(74,10,18,.25),rgba(42,5,9,.75) 80%),linear-gradient(180deg,rgba(42,5,9,.8) 0%,rgba(42,5,9,.3) 30%,rgba(42,5,9,.35) 60%,rgba(42,5,9,.95) 100%)}
+.hero h1,.hero .te-line,.hero p.sub{text-shadow:0 4px 30px rgba(20,2,5,.75)}
+.hero-show{display:flex;justify-content:center;align-items:flex-end;margin-top:44px;opacity:0;transform:translateY(40px);transition:opacity 1.2s 1.6s var(--ease),transform 1.2s 1.6s var(--ease)}
+.loaded .hero-show{opacity:1;transform:none}
+.hs-card{--r:0deg;--y:0px;position:relative;width:clamp(100px,27vw,200px);aspect-ratio:3/4;border-radius:999px 999px 18px 18px;overflow:hidden;border:3px solid var(--gold-2);box-shadow:0 25px 50px -12px rgba(0,0,0,.7),0 0 0 6px rgba(246,210,122,.12);transform:rotate(var(--r)) translateY(var(--y));animation:bob 5s ease-in-out infinite;background:#5a0c17}
+.hs-card img{width:100%;height:100%;object-fit:cover}
+.hs-card figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 6px 9px;font-size:clamp(.62rem,2.4vw,.8rem);letter-spacing:.2em;text-transform:uppercase;color:#fff;background:linear-gradient(transparent,rgba(30,4,8,.9))}
+.hs-card.c1{--r:-9deg;--y:18px;margin-right:-14px;animation-delay:-1.5s}
+.hs-card.c2{--y:-6px;width:clamp(118px,31vw,236px);z-index:2;animation-delay:-3s}
+.hs-card.c3{--r:9deg;--y:18px;margin-left:-14px}
+@keyframes bob{50%{transform:rotate(var(--r)) translateY(calc(var(--y) - 10px))}}
+@keyframes kenburns{from{transform:scale(1.15) translate(0,0)}to{transform:scale(1.28) translate(-2%,-3%)}}
+.band{position:relative;isolation:isolate}
+.band::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(120deg,rgba(245,158,11,.88),rgba(255,122,26,.82) 50%,rgba(179,18,46,.9)),url("https://images.unsplash.com/photo-1757693350857-61d31a1b77bf?auto=format&fit=crop&w=1600&q=70") center/cover;background-attachment:scroll}
+.mandala{position:absolute;width:min(900px,160vw);aspect-ratio:1;left:50%;top:50%;transform:translate(-50%,-50%);opacity:.13;animation:spin 120s linear infinite;z-index:1}
+.mandala.m2{width:min(560px,105vw);opacity:.22;animation-direction:reverse;animation-duration:80s}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.toran{position:absolute;top:72px;left:0;right:0;height:56px;z-index:4;display:flex;justify-content:center;pointer-events:none}
+.toran svg{width:100%;height:56px}
+.garlands{position:absolute;top:78px;left:0;right:0;z-index:2;display:flex;justify-content:space-between;padding:0 2%;pointer-events:none}
+.garlands .grp{display:flex;gap:clamp(14px,3vw,46px)}
+.garland{transform-origin:top center;animation:sway 5s ease-in-out infinite}
+.garland svg{display:block}
+@keyframes sway{0%,100%{transform:rotate(2.5deg)}50%{transform:rotate(-2.5deg)}}
+.hero-inner{position:relative;z-index:5;max-width:960px;padding:0 20px}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;color:var(--gold-2);letter-spacing:.38em;font-size:.72rem;text-transform:uppercase}
+.eyebrow::before,.eyebrow::after{content:"";width:34px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.eyebrow::after{transform:scaleX(-1)}
+.hero h1{font-family:"Cormorant Garamond";font-weight:600;font-size:clamp(3rem,10vw,7.4rem);line-height:.98;margin:22px 0 10px;letter-spacing:-.01em}
+.hero h1 .line{display:block;overflow:hidden;padding-bottom:.08em}
+.hero h1 .ch{display:inline-block;transform:translateY(110%) rotate(8deg);opacity:0;transition:transform 1.1s var(--ease),opacity 1.1s var(--ease)}
+.loaded .hero h1 .ch{transform:none;opacity:1}
+.hero h1 em{font-style:italic;background:linear-gradient(100deg,var(--gold-2),var(--marigold) 40%,#fff3cf 55%,var(--gold) 70%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:goldflow 6s linear infinite}
+@keyframes goldflow{to{background-position:200% center}}
+.hero .te-line{font-size:clamp(1.15rem,3.6vw,1.7rem);color:var(--gold-2);opacity:0;transform:translateY(16px);transition:1s 1s var(--ease)}
+.hero p.sub{max-width:600px;margin:18px auto 34px;color:#f3dcd0;font-weight:300;font-size:clamp(.95rem,2.4vw,1.08rem);opacity:0;transform:translateY(16px);transition:1s 1.2s var(--ease)}
+.hero .ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;opacity:0;transform:translateY(16px);transition:1s 1.4s var(--ease)}
+.loaded .hero .te-line,.loaded .hero p.sub,.loaded .hero .ctas{opacity:1;transform:none}
+.scroll-cue{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:5;display:flex;flex-direction:column;align-items:center;gap:8px;font-size:.65rem;letter-spacing:.35em;color:var(--gold-2)}
+.scroll-cue span{width:1px;height:46px;background:linear-gradient(var(--gold),transparent);animation:drip 2s infinite}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.diyas{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-around;z-index:4;pointer-events:none}
+.diya{width:46px;height:40px;position:relative}
+.diya .fl{position:absolute;left:50%;top:0;width:12px;height:22px;margin-left:-6px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:radial-gradient(circle at 50% 70%,#fff7c2,#ffb52e 50%,#ff5a1a);box-shadow:0 0 22px 8px rgba(255,170,40,.5);animation:flick 1.6s ease-in-out infinite alternate;transform-origin:bottom center}
+.diya .bowl{position:absolute;bottom:0;left:0;right:0;height:18px;border-radius:0 0 30px 30px;background:linear-gradient(#e88a2a,#9c3b0b)}
+@keyframes flick{0%{transform:scale(1,1) rotate(-3deg)}50%{transform:scale(.92,1.08) rotate(2deg)}100%{transform:scale(1.04,.95) rotate(-1deg)}}
+
+/* ---------- Marquee ---------- */
+.marquee{background:linear-gradient(90deg,var(--marigold),var(--saffron));color:var(--maroon);overflow:hidden;padding:16px 0;position:relative;z-index:6;transform:rotate(-1.5deg);margin:-26px -10px 0;box-shadow:0 20px 40px -20px rgba(255,122,26,.6)}
+.marquee .track{display:flex;gap:44px;width:max-content;animation:mq 34s linear infinite;font-family:"Cormorant Garamond";font-weight:700;font-size:1.5rem;white-space:nowrap}
+.marquee .track span{display:flex;align-items:center;gap:44px}
+.marquee .track span::after{content:"✿";font-size:1rem;color:var(--crimson)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ---------- Sections ---------- */
+section{position:relative}
+.pad{padding:120px 0}
+.head{text-align:center;max-width:720px;margin:0 auto 60px}
+.kicker{display:inline-block;color:var(--crimson);letter-spacing:.35em;font-size:.72rem;text-transform:uppercase;font-weight:600}
+.head h2,.h2{font-family:"Cormorant Garamond";font-size:clamp(2.3rem,6vw,4rem);line-height:1.04;font-weight:600;margin:14px 0 14px;color:var(--maroon)}
+.head h2 em,.h2 em{font-style:italic;color:var(--crimson)}
+.head p{color:var(--muted)}
+.divider{display:flex;justify-content:center;margin:6px 0 4px}
+.divider svg{width:120px;height:20px}
+
+.reveal{opacity:0;transform:translateY(50px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}
+
+/* About */
+.about{background:var(--ivory);overflow:hidden}
+.about-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:70px;align-items:center}
+.about-visual{position:relative;aspect-ratio:4/5}
+.frame{position:absolute;border-radius:200px 200px 24px 24px;overflow:hidden;box-shadow:var(--shadow)}
+.frame.f1{inset:0 18% 8% 0}
+.frame.f2{width:48%;aspect-ratio:3/4;right:0;bottom:0;border-radius:24px;border:8px solid var(--ivory)}
+.badge{position:absolute;left:-4%;bottom:14%;width:128px;height:128px;border-radius:50%;background:var(--maroon);color:var(--gold-2);display:grid;place-items:center;text-align:center;z-index:3;box-shadow:var(--shadow)}
+.badge svg{position:absolute;inset:0;animation:spin2 18s linear infinite}
+@keyframes spin2{to{transform:rotate(360deg)}}
+.badge > div{display:flex;flex-direction:column;align-items:center;position:relative}
+.badge b{font-family:"Cormorant Garamond";font-size:2.3rem;line-height:1;color:#fff}
+.badge small{font-size:.6rem;letter-spacing:.2em}
+.about p.lead{font-family:"Cormorant Garamond";font-size:clamp(1.35rem,3vw,1.7rem);line-height:1.4;color:var(--maroon);margin-bottom:18px}
+.about p{color:var(--muted);margin-bottom:16px}
+.founders{display:flex;gap:16px;margin:28px 0 34px;flex-wrap:wrap}
+.founder{display:flex;align-items:center;gap:12px;background:#fff;padding:10px 20px 10px 10px;border-radius:999px;box-shadow:0 10px 30px -15px rgba(74,10,18,.3)}
+.founder .av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--crimson),var(--maroon));color:var(--gold-2);display:grid;place-items:center;font-family:"Cormorant Garamond";font-weight:700;font-size:1.2rem}
+.founder b{display:block;font-size:.95rem;line-height:1.2}
+.founder small{color:var(--muted);font-size:.75rem}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.stat{border-top:1px solid rgba(179,18,46,.25);padding-top:14px}
+.stat b{font-family:"Cormorant Garamond";font-size:2.6rem;color:var(--crimson);line-height:1;font-weight:700}
+.stat small{display:block;color:var(--muted);font-size:.78rem;margin-top:4px}
+
+/* ---------- Decor "art" placeholders (used when real photos absent) ---------- */
+.art{position:absolute;inset:0;overflow:hidden}
+.art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+.art .ill{position:absolute;inset:0;width:100%;height:100%}
+.t-floral{background:linear-gradient(180deg,#fdf2ec 0%,#f6dfe0 55%,#7b1626 56%,#5a0c17 100%)}
+.t-marigold{background:linear-gradient(180deg,#ffd166 0%,#ffb703 50%,#7a2d0c 51%,#4a1a07 100%)}
+.t-green{background:linear-gradient(180deg,#1f4d2b,#2f6b3a 55%,#7a1222 56%,#4a0a12)}
+.t-drape{background:linear-gradient(180deg,#ff3d77,#c2185b 55%,#3b0a1a 56%,#24060f)}
+.t-ivory{background:linear-gradient(180deg,#fffaf2,#f1e3c8 55%,#a6774b 56%,#6c4527)}
+.t-balloon{background:linear-gradient(180deg,#fbe4ec,#f4c6d4 55%,#e9d3bd 56%,#c9a98a)}
+.t-night{background:linear-gradient(180deg,#160a2a,#3b0f4a 55%,#2a0509 56%,#120204)}
+
+/* Services */
+.services{background:linear-gradient(180deg,var(--ivory),var(--cream))}
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.svc{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:3/4.2;color:#fff;box-shadow:var(--shadow);transform-style:preserve-3d;transition:transform .5s var(--ease);cursor:pointer}
+.svc::after{content:"";position:absolute;inset:0;z-index:3;background:linear-gradient(180deg,transparent 35%,rgba(30,4,8,.92));transition:.5s}
+.svc .body{position:absolute;left:0;right:0;bottom:0;padding:22px;z-index:4}
+.svc .num{font-size:.7rem;letter-spacing:.3em;color:var(--gold-2)}
+.svc h3{font-family:"Cormorant Garamond";font-size:1.75rem;line-height:1.05;margin:6px 0 4px;font-weight:600}
+.svc .te{color:var(--gold-2);font-size:.95rem}
+.svc p{font-size:.82rem;color:#f0d8cf;max-height:0;overflow:hidden;opacity:0;transition:.5s var(--ease)}
+.svc:hover p,.svc.open p{max-height:120px;opacity:1;margin-top:8px}
+.svc .art{transition:transform 1.2s var(--ease)}
+.svc:hover .art{transform:scale(1.08)}
+.svc .shine{position:absolute;inset:0;z-index:5;pointer-events:none;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.22),transparent 45%);opacity:0;transition:opacity .4s}
+.svc:hover .shine{opacity:1}
+
+/* Signature showcase (horizontal) */
+.signature{background:var(--maroon);color:#fff;overflow:hidden}
+.signature .head h2{color:#fff}.signature .head h2 em{color:var(--gold-2)}
+.signature .head p{color:#e8c9bf}.signature .kicker{color:var(--gold)}
+.hscroll{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 20px 40px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.hscroll::-webkit-scrollbar{display:none}
+.sig{flex:0 0 min(420px,82vw);scroll-snap-align:center;border-radius:28px;overflow:hidden;position:relative;aspect-ratio:4/5;border:1px solid rgba(246,210,122,.25)}
+.sig .cap{position:absolute;left:0;right:0;bottom:0;z-index:4;padding:26px;background:linear-gradient(transparent,rgba(20,3,6,.95))}
+.sig .cap b{font-family:"Cormorant Garamond";font-size:1.9rem;font-weight:600;display:block;line-height:1.1}
+.sig .cap span{font-size:.8rem;color:var(--gold-2);letter-spacing:.15em;text-transform:uppercase}
+.hs-nav{display:flex;justify-content:center;gap:12px}
+.hs-nav button{width:52px;height:52px;border-radius:50%;border:1px solid rgba(246,210,122,.5);color:var(--gold-2);font-size:1.2rem;transition:.3s}
+.hs-nav button:hover{background:var(--gold);color:var(--maroon)}
+
+/* Gallery */
+.filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:36px}
+.filters button{padding:10px 20px;border-radius:999px;border:1px solid rgba(179,18,46,.25);font-size:.85rem;color:var(--maroon);transition:.35s var(--ease)}
+.filters button.on,.filters button:hover{background:var(--maroon);color:var(--gold-2);border-color:var(--maroon)}
+.gallery{columns:3 280px;column-gap:18px}
+.g-item{break-inside:avoid;margin-bottom:18px;border-radius:18px;overflow:hidden;position:relative;cursor:zoom-in;transition:opacity .5s,transform .5s var(--ease)}
+.g-item .box{position:relative}
+.g-item.hide{display:none}
+.g-item .lbl{position:absolute;left:14px;bottom:14px;z-index:4;background:rgba(255,248,236,.92);color:var(--maroon);font-size:.75rem;padding:6px 14px;border-radius:999px;transform:translateY(10px);opacity:0;transition:.4s var(--ease)}
+.g-item:hover .lbl{transform:none;opacity:1}
+.g-item:hover .art{transform:scale(1.05)}
+.g-item .art{transition:transform .9s var(--ease)}
+#lightbox{position:fixed;inset:0;z-index:300;background:rgba(20,3,6,.94);display:grid;place-items:center;opacity:0;visibility:hidden;transition:.4s;padding:20px}
+#lightbox.on{opacity:1;visibility:visible}
+#lightbox .lb-in{position:relative;width:min(560px,92vw);aspect-ratio:4/5;border-radius:20px;overflow:hidden;transform:scale(.9);transition:.5s var(--ease)}
+#lightbox.on .lb-in{transform:none}
+#lightbox .x{position:absolute;top:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--gold);color:var(--maroon);font-size:1.4rem;z-index:2}
+#lightbox .lb-cap{position:absolute;bottom:0;left:0;right:0;padding:20px;z-index:4;color:#fff;font-family:"Cormorant Garamond";font-size:1.6rem;background:linear-gradient(transparent,rgba(0,0,0,.8))}
+
+/* Process */
+.process{background:var(--cream)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;position:relative}
+.steps::before{content:"";position:absolute;top:44px;left:12%;right:12%;height:2px;background:repeating-linear-gradient(90deg,var(--gold) 0 10px,transparent 10px 18px)}
+.step{text-align:center;position:relative}
+.step .ic{width:88px;height:88px;margin:0 auto 20px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 18px 40px -18px rgba(74,10,18,.45);position:relative;border:2px solid var(--gold-2)}
+.step .ic svg{width:38px;height:38px;color:var(--crimson)}
+.step .ic i{position:absolute;top:-6px;right:-6px;width:30px;height:30px;border-radius:50%;background:var(--crimson);color:#fff;font-style:normal;font-size:.75rem;display:grid;place-items:center;font-weight:600}
+.step h4{font-family:"Cormorant Garamond";font-size:1.55rem;color:var(--maroon);font-weight:600}
+.step p{font-size:.88rem;color:var(--muted);max-width:240px;margin:6px auto 0}
+
+/* Packages */
+.pk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+.pk{background:#fff;border-radius:28px;padding:40px 32px;position:relative;box-shadow:0 20px 50px -30px rgba(74,10,18,.45);border:1px solid rgba(232,176,74,.3);transition:transform .5s var(--ease);display:flex;flex-direction:column}
+.pk:hover{transform:translateY(-10px)}
+.pk.hot{background:linear-gradient(160deg,#6b0f1a,#2a0509);color:#fff;border:0;transform:scale(1.04)}
+.pk.hot:hover{transform:scale(1.04) translateY(-10px)}
+.pk .tag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--maroon);font-size:.7rem;letter-spacing:.2em;padding:6px 16px;border-radius:999px;font-weight:600;white-space:nowrap}
+.pk h3{font-family:"Cormorant Garamond";font-size:2rem;font-weight:600;color:var(--maroon)}
+.pk.hot h3{color:var(--gold-2)}
+.pk .for{font-size:.82rem;color:var(--muted);margin-bottom:20px}
+.pk.hot .for{color:#e8c9bf}
+.pk ul{list-style:none;margin-bottom:28px;flex:1}
+.pk li{padding:9px 0 9px 28px;position:relative;font-size:.9rem;border-bottom:1px dashed rgba(179,18,46,.15)}
+.pk.hot li{border-color:rgba(246,210,122,.2)}
+.pk li::before{content:"✿";position:absolute;left:0;color:var(--marigold)}
+.pk .btn{justify-content:center}
+.pk .btn-line{border:1px solid var(--maroon);color:var(--maroon)}
+
+/* Testimonials */
+.testi{background:radial-gradient(ellipse at top,#7a1222,#2a0509);color:#fff;overflow:hidden}
+.testi .head h2{color:#fff}.testi .head h2 em{color:var(--gold-2)}.testi .kicker{color:var(--gold)}
+.t-track{display:flex;transition:transform .8s var(--ease)}
+.t-card{flex:0 0 100%;text-align:center;padding:0 10px}
+.t-card q{display:block;font-family:"Cormorant Garamond";font-size:clamp(1.4rem,3.6vw,2.2rem);line-height:1.35;font-style:italic;max-width:820px;margin:0 auto 26px;quotes:"“" "”"}
+.t-card q::before{content:open-quote;color:var(--gold);font-size:1.4em;line-height:0;vertical-align:-.3em;margin-right:4px}
+.t-card q::after{content:close-quote;color:var(--gold);font-size:1.4em;line-height:0;vertical-align:-.3em}
+.t-card b{color:var(--gold-2);font-weight:500}
+.t-card small{display:block;color:#d9b9ad;font-size:.8rem;letter-spacing:.1em}
+.stars{color:var(--gold);letter-spacing:4px;margin-bottom:18px}
+.dots{display:flex;gap:10px;justify-content:center;margin-top:40px}
+.dots button{width:10px;height:10px;border-radius:999px;background:rgba(246,210,122,.35);transition:.4s var(--ease)}
+.dots button.on{width:34px;background:var(--gold)}
+
+/* CTA band */
+.band{color:#fff;text-align:center;padding:90px 20px;overflow:hidden}
+.band h2{font-family:"Cormorant Garamond";font-size:clamp(2.2rem,6vw,4.2rem);line-height:1.05;font-weight:600}
+.band .te{font-size:clamp(1.1rem,3vw,1.5rem);margin:12px 0 30px;opacity:.95}
+.band .btn-gold{background:#fff;color:var(--maroon)}
+
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:40px}
+.c-card{background:var(--maroon);color:#fff;border-radius:28px;padding:44px 36px;position:relative;overflow:hidden}
+.c-card::before{content:"";position:absolute;width:380px;height:380px;right:-140px;top:-140px;border-radius:50%;border:40px solid rgba(246,210,122,.08)}
+.c-card h3{font-family:"Cormorant Garamond";font-size:2.2rem;font-weight:600;color:var(--gold-2);margin-bottom:6px}
+.c-row{display:flex;gap:16px;align-items:center;padding:18px 0;border-bottom:1px solid rgba(246,210,122,.15)}
+.c-row .ci{width:48px;height:48px;border-radius:14px;background:rgba(246,210,122,.12);display:grid;place-items:center;flex:none}
+.c-row .ci svg{width:22px;height:22px;color:var(--gold-2)}
+.c-row small{display:block;color:#d9b9ad;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase}
+.c-row b{font-weight:500;font-size:1.05rem}
+.map{margin-top:24px;border-radius:18px;overflow:hidden;height:190px;border:1px solid rgba(246,210,122,.25)}
+.map iframe{width:100%;height:100%;border:0;filter:grayscale(.3) contrast(1.05)}
+form{background:#fff;border-radius:28px;padding:44px 36px;box-shadow:0 30px 60px -35px rgba(74,10,18,.5)}
+form h3{font-family:"Cormorant Garamond";font-size:2.2rem;color:var(--maroon);font-weight:600}
+form > p{color:var(--muted);font-size:.9rem;margin-bottom:22px}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fld{position:relative;margin-bottom:14px}
+.fld input,.fld select,.fld textarea{width:100%;padding:22px 16px 8px;border-radius:14px;border:1px solid #ecdcc8;background:var(--ivory);font:inherit;font-size:.95rem;color:var(--ink);outline:none;transition:.3s;appearance:none;-webkit-appearance:none}
+.fld textarea{min-height:100px;resize:vertical}
+.fld label{position:absolute;left:16px;top:15px;font-size:.92rem;color:var(--muted);pointer-events:none;transition:.25s var(--ease)}
+.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(232,176,74,.18);background:#fff}
+.fld input:focus+label,.fld input:not(:placeholder-shown)+label,.fld textarea:focus+label,.fld textarea:not(:placeholder-shown)+label,.fld select+label{top:6px;font-size:.68rem;letter-spacing:.08em;color:var(--crimson)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.chips label{cursor:pointer}
+.chips input{display:none}
+.chips span{display:inline-block;padding:8px 16px;border-radius:999px;border:1px solid #ecdcc8;font-size:.82rem;transition:.25s}
+.chips input:checked+span{background:var(--crimson);color:#fff;border-color:var(--crimson)}
+form .btn{width:100%;justify-content:center;margin-top:6px;padding:17px}
+
+/* Footer */
+footer{background:#1c0306;color:#d9b9ad;padding:70px 0 120px;text-align:center}
+footer .brand{justify-content:center;margin-bottom:16px}
+footer .brand svg{width:60px;height:60px}
+footer .brand b{font-size:2rem}
+footer .te{color:var(--gold-2);font-size:1.15rem;margin-bottom:24px}
+.soc{display:flex;gap:12px;justify-content:center;margin-bottom:28px}
+.soc a{width:46px;height:46px;border-radius:50%;border:1px solid rgba(246,210,122,.3);display:grid;place-items:center;transition:.3s}
+.soc a:hover{background:var(--gold);color:var(--maroon)}
+.soc svg{width:20px;height:20px}
+footer .copy{font-size:.78rem;opacity:.65}
+
+/* Floating */
+.wa-float{position:fixed;right:22px;bottom:24px;z-index:150;width:62px;height:62px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 14px 30px -8px rgba(37,211,102,.7);color:#fff}
+.wa-float::before,.wa-float::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25d366;animation:ring 2.4s infinite}
+.wa-float::after{animation-delay:1.2s}
+@keyframes ring{from{transform:scale(1);opacity:.8}to{transform:scale(1.8);opacity:0}}
+.wa-float svg{width:32px;height:32px}
+.mbar{display:none}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1000px){
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:50px}
+  .pk-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto}
+  .pk.hot{transform:none}.pk.hot:hover{transform:translateY(-10px)}
+}
+@media (max-width:760px){
+  .links{display:none}.burger{display:block}
+  .pad{padding:84px 0}
+  .head{margin-bottom:40px}
+  .svc-grid{gap:14px}
+  .svc{aspect-ratio:3/4.4}
+  .svc .body{padding:16px}
+  .svc h3{font-size:1.35rem}
+  .steps{grid-template-columns:1fr 1fr;gap:34px 16px}
+  .steps::before{display:none}
+  .f2{grid-template-columns:1fr}
+  form,.c-card{padding:32px 22px}
+  .about-visual{max-width:440px;margin:0 auto;width:100%}
+  .badge{width:104px;height:104px;left:0}
+  .badge b{font-size:1.9rem}
+  .gallery{columns:2;column-gap:12px}
+  .g-item{margin-bottom:12px;border-radius:14px}
+  .g-item .lbl{opacity:1;transform:none;font-size:.65rem;padding:4px 10px;left:8px;bottom:8px}
+  .wa-float{display:none}
+  .eyebrow{letter-spacing:.22em;font-size:.62rem;gap:8px}
+  .eyebrow::before,.eyebrow::after{width:18px}
+  .badge b{font-size:1.7rem}
+  .badge small{font-size:.5rem}
+  .mbar{display:grid;grid-template-columns:1fr 1fr 1.3fr;position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:140;background:rgba(42,5,9,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:20px;padding:6px;gap:6px;box-shadow:0 14px 40px -10px rgba(0,0,0,.6);transform:translateY(140%);transition:transform .6s var(--ease)}
+  .mbar.show{transform:none}
+  .mbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#f6d27a;font-size:.68rem;padding:8px 4px;border-radius:14px}
+  .mbar a svg{width:20px;height:20px}
+  .mbar a.go{background:linear-gradient(135deg,var(--gold-2),var(--saffron));color:var(--maroon);font-weight:600;flex-direction:row;font-size:.85rem;gap:8px}
+  .marquee .track{font-size:1.2rem}
+  .hero{padding:150px 0 90px}
+  .scroll-cue{display:none}
+  .hero h1{margin-top:16px}
+  .hero p.sub{margin:14px auto 26px}
+  .hero .ctas .btn{padding:13px 20px;font-size:.88rem}
+  .diya{transform:scale(.75)}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Logo symbol (Telugu "వై" with trishul & eye, inspired by brand mark) ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gGold" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#fff1c1"/><stop offset=".5" stop-color="#e8b04a"/><stop offset="1" stop-color="#b9771c"/></linearGradient>
+    <symbol id="logo" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="46" fill="none" stroke="url(#gGold)" stroke-width="2.5"/>
+      <circle cx="50" cy="50" r="40" fill="#fff8ec"/>
+      <!-- trishul -->
+      <path d="M50 14v30M42 20c0 8 3 12 8 12s8-4 8-12M50 12l-3 5h6z" fill="none" stroke="#c4122f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="44" y="70" text-anchor="middle" font-family="Tiro Telugu, serif" font-size="34" fill="#c4122f">వై</text>
+      <!-- eye -->
+      <path d="M58 58c5-5 12-5 16 0-4 5-11 5-16 0z" fill="#fff" stroke="#1f0a0d" stroke-width="1.6"/>
+      <circle cx="66" cy="58" r="2.6" fill="#1f0a0d"/>
+      <path d="M57 53c6-4 13-4 18 0" fill="none" stroke="#1f0a0d" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M44 80c3 2 9 2 12 0" fill="none" stroke="#c4122f" stroke-width="2.4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></g></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></g></symbol>
+    <symbol id="i-fb" viewBox="0 0 24 24"><path fill="currentColor" d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H8v4h2v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5z"/></symbol>
+    <!-- ornament divider -->
+    <symbol id="orn" viewBox="0 0 120 20"><g fill="none" stroke="#e8b04a" stroke-width="1.4"><path d="M0 10h44M76 10h44"/><path d="M60 2c4 4 4 12 0 16-4-4-4-12 0-16z" fill="#b3122e" stroke="none"/><circle cx="50" cy="10" r="2.5" fill="#e8b04a"/><circle cx="70" cy="10" r="2.5" fill="#e8b04a"/></g></symbol>
+    <!-- mandala -->
+    <symbol id="mandala" viewBox="0 0 400 400">
+      <g fill="none" stroke="#f6d27a" stroke-width="1">
+        <circle cx="200" cy="200" r="195"/><circle cx="200" cy="200" r="170"/><circle cx="200" cy="200" r="120"/><circle cx="200" cy="200" r="60"/><circle cx="200" cy="200" r="20"/>
+        <g id="petalRing"><path d="M200 30c18 30 18 60 0 90-18-30-18-60 0-90z"/><path d="M200 80c40 0 70 30 0 120-70-90-40-120 0-120z" opacity=".6"/></g>
+        <use href="#petalRing" transform="rotate(22.5 200 200)"/><use href="#petalRing" transform="rotate(45 200 200)"/><use href="#petalRing" transform="rotate(67.5 200 200)"/>
+        <use href="#petalRing" transform="rotate(90 200 200)"/><use href="#petalRing" transform="rotate(112.5 200 200)"/><use href="#petalRing" transform="rotate(135 200 200)"/><use href="#petalRing" transform="rotate(157.5 200 200)"/>
+        <use href="#petalRing" transform="rotate(180 200 200)"/><use href="#petalRing" transform="rotate(202.5 200 200)"/><use href="#petalRing" transform="rotate(225 200 200)"/><use href="#petalRing" transform="rotate(247.5 200 200)"/>
+        <use href="#petalRing" transform="rotate(270 200 200)"/><use href="#petalRing" transform="rotate(292.5 200 200)"/><use href="#petalRing" transform="rotate(315 200 200)"/><use href="#petalRing" transform="rotate(337.5 200 200)"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<div id="loader">
+  <div>
+    <svg class="lg" viewBox="0 0 100 100" fill="none" stroke="#f6d27a" stroke-width="2" stroke-linecap="round">
+      <circle cx="50" cy="50" r="46"/>
+      <path d="M50 18v52M38 26c0 12 5 18 12 18s12-6 12-18M50 14l-5 8h10z"/>
+      <path d="M34 78c10 6 22 6 32 0"/>
+    </svg>
+    <div class="lt"><b>VAIDEHI</b>EVENTS</div>
+  </div>
+</div>
+
+<div id="progress"></div>
+<div id="glow"></div>
+
+<nav id="nav">
+  <div class="wrap">
+    <a href="#top" class="brand"><svg><use href="#logo"/></svg><div><b>Vaidehi</b><small>EVENTS · KORUTLA</small></div></a>
+    <div class="links">
+      <a href="#about">About</a><a href="#services">Services</a><a href="#gallery">Gallery</a><a href="#packages">Packages</a><a href="#contact">Contact</a>
+      <a href="#contact" class="btn btn-gold">Book Your Date</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span></button>
+  </div>
+</nav>
+<div id="mmenu">
+  <a href="#about"><i>01</i>About</a>
+  <a href="#services"><i>02</i>Services</a>
+  <a href="#gallery"><i>03</i>Gallery</a>
+  <a href="#packages"><i>04</i>Packages</a>
+  <a href="#contact"><i>05</i>Contact</a>
+  <div class="mm-foot">📞 85008 78184 · 78429 47901<br>Korutla, Telangana</div>
+</div>
+
+<!-- ===== HERO ===== -->
+<header class="hero" id="top">
+  <div class="hero-bg"><img src="https://images.unsplash.com/photo-1745573673416-66e829644ae9?auto=format&fit=crop&w=1800&q=75" alt="" fetchpriority="high"></div>
+  <svg class="mandala"><use href="#mandala"/></svg>
+  <svg class="mandala m2"><use href="#mandala"/></svg>
+  <div class="garlands" id="garlands"></div>
+  <div class="toran"><svg id="toran" preserveAspectRatio="none"></svg></div>
+  <canvas id="petals"></canvas>
+
+  <div class="hero-inner">
+    <div class="eyebrow">Korutla · Since the Grand Start</div>
+    <h1 id="heroTitle"><span class="line" data-split>We Make Your</span><span class="line"><em data-split>Day Special</em></span></h1>
+    <div class="te te-line">మీ ప్రతి వేడుకకు ఒక అందమైన రూపం</div>
+    <p class="sub">Wedding stages, haldi, engagements, birthdays, house warmings and festival décor. Designed and set up by hand across Korutla and Jagtial district.</p>
+    <div class="ctas">
+      <a class="btn btn-gold" href="https://wa.me/918500878184?text=Hi%20Vaidehi%20Events!%20I%20want%20to%20book%20a%20decoration." target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Book on WhatsApp</a>
+      <a class="btn btn-ghost" href="#gallery">View Our Work →</a>
+    </div>
+    <div class="hero-show">
+      <figure class="hs-card c1"><img src="https://images.unsplash.com/photo-1790808415655-7633deb022d2?auto=format&fit=crop&w=500&q=75" alt="Marigold haldi décor"><figcaption>Haldi</figcaption></figure>
+      <figure class="hs-card c2"><img src="https://images.unsplash.com/photo-1745573674471-e057af420757?auto=format&fit=crop&w=600&q=75" alt="Floral wedding stage"><figcaption>Weddings</figcaption></figure>
+      <figure class="hs-card c3"><img src="https://images.unsplash.com/photo-1560128411-79892dd93bf8?auto=format&fit=crop&w=500&q=75" alt="Birthday balloon décor"><figcaption>Birthdays</figcaption></figure>
+    </div>
+  </div>
+
+  <div class="diyas"><div class="diya"><div class="fl"></div><div class="bowl"></div></div><div class="diya"><div class="fl" style="animation-delay:.4s"></div><div class="bowl"></div></div><div class="diya"><div class="fl" style="animation-delay:.8s"></div><div class="bowl"></div></div><div class="diya"><div class="fl" style="animation-delay:.2s"></div><div class="bowl"></div></div><div class="diya"><div class="fl" style="animation-delay:.6s"></div><div class="bowl"></div></div></div>
+  <div class="scroll-cue">SCROLL<span></span></div>
+</header>
+
+<div class="marquee"><div class="track" id="mq"></div></div>
+
+<!-- ===== ABOUT ===== -->
+<section class="about pad" id="about">
+  <div class="wrap about-grid">
+    <div class="about-visual reveal">
+      <div class="frame f1"><div class="art t-floral" data-art="arch" data-img="1745573674471-e057af420757"></div></div>
+      <div class="frame f2"><div class="art t-marigold" data-art="haldi" data-img="1789971649652-ae5dfeeaa7b4"></div></div>
+      <div class="badge">
+        <svg viewBox="0 0 100 100"><defs><path id="cpath" d="M50 50m-38 0a38 38 0 1 1 76 0a38 38 0 1 1-76 0"/></defs><text font-size="8.4" fill="#f6d27a" letter-spacing="3"><textPath href="#cpath">✿ ALL EVENTS CONDUCTED ✿ KORUTLA ✿</textPath></text></svg>
+        <div><b>470+</b><small>DESIGNS</small></div>
+      </div>
+    </div>
+    <div>
+      <span class="kicker reveal">Our Story</span>
+      <h2 class="h2 reveal d1">Every celebration <em>deserves</em> a stage.</h2>
+      <div class="divider reveal d1" style="justify-content:flex-start"><svg><use href="#orn"/></svg></div>
+      <p class="lead reveal d2">Vaidehi Events is a family-run event company from Korutla. We turn halls, homes and courtyards into places you will remember.</p>
+      <p class="reveal d2">From a grand floral wedding arch to a simple marigold haldi corner, we plan, build and light every setup ourselves. Tell us your date and budget and we take care of the rest: flowers, drapes, stage furniture, lighting and balloons.</p>
+      <div class="founders reveal d3">
+        <div class="founder"><div class="av">V</div><div><b>Vamshi Nalla</b><small>Founder · Event Organiser</small></div></div>
+        <div class="founder"><div class="av">G</div><div><b>Ganesh Nalla</b><small>Co-Founder · Décor</small></div></div>
+      </div>
+      <div class="stats reveal d3">
+        <div class="stat"><b data-count="470">0</b><b>+</b><small>Setups showcased</small></div>
+        <div class="stat"><b data-count="12">0</b><b>+</b><small>Event types</small></div>
+        <div class="stat"><b data-count="100">0</b><b>%</b><small>Hand-crafted décor</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="services pad" id="services">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker reveal">What We Do</span>
+      <h2 class="reveal d1">Celebrations we <em>bring to life</em></h2>
+      <div class="divider reveal d1"><svg><use href="#orn"/></svg></div>
+      <p class="reveal d2">One team for every family function, big or small.</p>
+    </div>
+    <div class="svc-grid" id="svcGrid"></div>
+  </div>
+</section>
+
+<!-- ===== SIGNATURE ===== -->
+<section class="signature pad">
+  <div class="head wrap">
+    <span class="kicker reveal">Signature Looks</span>
+    <h2 class="reveal d1">Designs Korutla <em>loves</em></h2>
+    <p class="reveal d2">Swipe through the stage styles families ask for most.</p>
+  </div>
+  <div class="hscroll" id="hs"></div>
+  <div class="hs-nav"><button id="hsPrev" aria-label="Previous">←</button><button id="hsNext" aria-label="Next">→</button></div>
+</section>
+
+<!-- ===== GALLERY ===== -->
+<section class="pad" id="gallery">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker reveal">Portfolio</span>
+      <h2 class="reveal d1">Moments we <em>decorated</em></h2>
+      <div class="divider reveal d1"><svg><use href="#orn"/></svg></div>
+    </div>
+    <div class="filters reveal" id="filters">
+      <button class="on" data-f="all">All</button><button data-f="wedding">Wedding</button><button data-f="haldi">Haldi</button><button data-f="birthday">Birthday</button><button data-f="pooja">Pooja & Festival</button><button data-f="home">House Warming</button>
+    </div>
+    <div class="gallery" id="gal"></div>
+    <div style="text-align:center;margin-top:40px" class="reveal">
+      <a class="btn btn-gold" href="https://instagram.com/vaidehi_events_korutla" target="_blank" rel="noopener"><svg><use href="#i-ig"/></svg>See 470+ posts on Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section class="process pad">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker reveal">How It Works</span>
+      <h2 class="reveal d1">From one call to <em>“wow”</em></h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="ic"><i>01</i><svg><use href="#i-phone"/></svg></div><h4>Call or WhatsApp</h4><p>Share your date, venue and the function you're planning.</p></div>
+      <div class="step reveal d1"><div class="ic"><i>02</i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg></div><h4>Pick Your Theme</h4><p>See designs that fit your budget, colours and flowers.</p></div>
+      <div class="step reveal d2"><div class="ic"><i>03</i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V10l7-6 7 6v11M9 21v-6h6v6"/></svg></div><h4>We Set It Up</h4><p>Our team builds and lights everything at your venue, on time.</p></div>
+      <div class="step reveal d3"><div class="ic"><i>04</i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-4.5-9-9.5C1.6 7.6 4 4 7.5 4c2 0 3.5 1 4.5 2.5C13 5 14.5 4 16.5 4 20 4 22.4 7.6 21 11.5 19 16.5 12 21 12 21z"/></svg></div><h4>You Celebrate</h4><p>Enjoy the day with your family. We clear up afterwards.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PACKAGES ===== -->
+<section class="pad" id="packages">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker reveal">Packages</span>
+      <h2 class="reveal d1">Choose your <em>celebration</em></h2>
+      <p class="reveal d2">Every package can be changed. Call us for a quote for your function.</p>
+    </div>
+    <div class="pk-grid">
+      <div class="pk reveal">
+        <h3>Shubham</h3><div class="for">Home functions & small gatherings</div>
+        <ul><li>Backdrop with fabric drapes</li><li>Marigold / fresh flower garlands</li><li>Decorated seating</li><li>Entrance toran</li><li>Basic lighting</li></ul>
+        <a href="#contact" class="btn btn-line" data-pkg="Shubham">Get a Quote</a>
+      </div>
+      <div class="pk hot reveal d1">
+        <span class="tag">MOST BOOKED</span>
+        <h3>Mangalam</h3><div class="for">Engagements, haldi & receptions</div>
+        <ul><li>Themed stage with floral arch</li><li>Royal sofa / swing setup</li><li>Haldi or mehendi corner</li><li>Welcome board & entrance décor</li><li>Warm stage & ambient lighting</li><li>Photo-booth backdrop</li></ul>
+        <a href="#contact" class="btn btn-gold" data-pkg="Mangalam">Get a Quote</a>
+      </div>
+      <div class="pk reveal d2">
+        <h3>Maharaja</h3><div class="for">Full wedding décor</div>
+        <ul><li>Grand mandap & reception stage</li><li>Premium fresh flowers</li><li>Venue & pathway decoration</li><li>Mangala snanam & pellikoothuru setups</li><li>Complete lighting design</li><li>A coordinator on the day</li></ul>
+        <a href="#contact" class="btn btn-line" data-pkg="Maharaja">Get a Quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="testi pad">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker reveal">Kind Words</span>
+      <h2 class="reveal d1">Families who <em>trusted us</em></h2>
+    </div>
+    <div style="overflow:hidden" class="reveal d2">
+      <div class="t-track" id="tt">
+        <div class="t-card"><div class="stars">★★★★★</div><q>The floral arch for our daughter's engagement was better than the photos we showed them. Every guest asked who did the décor.</q><b>Sample Review</b><small>ENGAGEMENT · KORUTLA</small></div>
+        <div class="t-card"><div class="stars">★★★★★</div><q>The haldi setup with marigolds and banana leaves looked so traditional and so fresh. They set everything up on time and cleared it all away.</q><b>Sample Review</b><small>HALDI · METPALLY</small></div>
+        <div class="t-card"><div class="stars">★★★★★</div><q>Our son's first birthday balloon theme came out exactly as we imagined. Very good price, and Vamshi garu was easy to reach on the phone.</q><b>Sample Review</b><small>BIRTHDAY · JAGTIAL</small></div>
+      </div>
+    </div>
+    <div class="dots" id="dots"></div>
+  </div>
+</section>
+
+<!-- ===== CTA BAND ===== -->
+<section class="band">
+  <h2 class="reveal">Your date is coming.<br>Let's make it unforgettable.</h2>
+  <div class="te reveal d1">మీ శుభకార్యానికి ఈరోజే బుక్ చేసుకోండి</div>
+  <a class="btn btn-gold reveal d2" href="tel:+918500878184"><svg><use href="#i-phone"/></svg>Call 85008 78184</a>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="pad" id="contact">
+  <div class="wrap contact-grid">
+    <div class="c-card reveal">
+      <h3>Let's talk</h3>
+      <p style="color:#e8c9bf;font-size:.92rem;margin-bottom:10px">Calls and WhatsApp are open every day.</p>
+      <a class="c-row" href="tel:+918500878184"><div class="ci"><svg><use href="#i-phone"/></svg></div><div><small>Vamshi Nalla</small><b>+91 85008 78184</b></div></a>
+      <a class="c-row" href="tel:+917842947901"><div class="ci"><svg><use href="#i-phone"/></svg></div><div><small>Ganesh Nalla</small><b>+91 78429 47901</b></div></a>
+      <a class="c-row" href="https://instagram.com/vaidehi_events_korutla" target="_blank" rel="noopener"><div class="ci"><svg><use href="#i-ig"/></svg></div><div><small>Instagram</small><b>@vaidehi_events_korutla</b></div></a>
+      <div class="c-row" style="border:0"><div class="ci"><svg><use href="#i-pin"/></svg></div><div><small>Based in</small><b>Korutla, Jagtial Dist., Telangana</b></div></div>
+      <div class="map"><iframe loading="lazy" title="Korutla map" src="https://maps.google.com/maps?q=Korutla,Telangana&z=13&output=embed"></iframe></div>
+    </div>
+
+    <form id="enq" class="reveal d1">
+      <h3>Plan your event</h3>
+      <p>Fill this in and we'll reply on WhatsApp right away.</p>
+      <div class="chips" id="chips">
+        <label><input type="radio" name="type" value="Wedding" checked><span>Wedding</span></label>
+        <label><input type="radio" name="type" value="Engagement"><span>Engagement</span></label>
+        <label><input type="radio" name="type" value="Haldi"><span>Haldi</span></label>
+        <label><input type="radio" name="type" value="Birthday"><span>Birthday</span></label>
+        <label><input type="radio" name="type" value="House Warming"><span>House Warming</span></label>
+        <label><input type="radio" name="type" value="Pooja / Festival"><span>Pooja / Festival</span></label>
+      </div>
+      <div class="f2">
+        <div class="fld"><input id="fn" required placeholder=" "><label for="fn">Your name</label></div>
+        <div class="fld"><input id="fp" type="tel" required placeholder=" " inputmode="tel"><label for="fp">Phone number</label></div>
+      </div>
+      <div class="f2">
+        <div class="fld"><input id="fd" type="date" placeholder=" "><label for="fd">Event date</label></div>
+        <div class="fld"><input id="fv" placeholder=" "><label for="fv">Venue / town</label></div>
+      </div>
+      <div class="fld"><textarea id="fm" placeholder=" "></textarea><label for="fm">Tell us your idea (colours, theme, budget)</label></div>
+      <button class="btn btn-gold" type="submit"><svg><use href="#i-wa"/></svg>Send on WhatsApp</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="#top" class="brand"><svg><use href="#logo"/></svg><div style="text-align:left"><b style="color:#fff">Vaidehi Events</b><small>KORUTLA</small></div></a>
+    <div class="te">మేము మీ రోజును ప్రత్యేకంగా చేస్తాము</div>
+    <div class="soc">
+      <a href="https://instagram.com/vaidehi_events_korutla" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
+      <a href="https://wa.me/918500878184" target="_blank" rel="noopener" aria-label="WhatsApp"><svg><use href="#i-wa"/></svg></a>
+      <a href="tel:+918500878184" aria-label="Call"><svg><use href="#i-phone"/></svg></a>
+      <a href="#" aria-label="Facebook"><svg><use href="#i-fb"/></svg></a>
+    </div>
+    <div class="copy">© <span id="yr"></span> Vaidehi Events, Korutla · Vamshi Nalla & Ganesh Nalla</div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/918500878184?text=Hi%20Vaidehi%20Events!" target="_blank" rel="noopener" aria-label="WhatsApp"><svg><use href="#i-wa"/></svg></a>
+<div class="mbar" id="mbar">
+  <a href="tel:+918500878184"><svg><use href="#i-phone"/></svg>Call</a>
+  <a href="https://wa.me/918500878184?text=Hi%20Vaidehi%20Events!" target="_blank" rel="noopener" style="color:#4ade80"><svg><use href="#i-wa"/></svg>WhatsApp</a>
+  <a href="#contact" class="go">Book Now ✿</a>
+</div>
+
+<div id="lightbox"><button class="x" aria-label="Close">×</button><div class="lb-in" id="lbIn"></div></div>
+
+<script>
+(()=>{
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const mobile=innerWidth<760;
+
+/* ---------- Decor illustrations (shown until real photos are dropped into /images) ---------- */
+const flower=(x,y,r,c1,c2)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${c1}"/><circle cx="${x}" cy="${y}" r="${r*.45}" fill="${c2}"/>`;
+function arch(c1,c2,c3){let s='';for(let i=0;i<=26;i++){const a=Math.PI*i/26,x=100-70*Math.cos(a),y=150-95*Math.sin(a);s+=flower(x,y,7+((i%3)*1.5),i%2?c1:c2,c3);}return s;}
+function sofa(col,acc){return `<g><path d="M55 170q0-30 45-30t45 30v22H55z" fill="${col}"/><path d="M70 165q30-22 60 0v20H70z" fill="${acc}" opacity=".8"/><rect x="50" y="188" width="100" height="12" rx="5" fill="${col}"/><rect x="58" y="200" width="6" height="12" fill="#5a3517"/><rect x="136" y="200" width="6" height="12" fill="#5a3517"/></g>`;}
+function hangers(c1,c2){let s='';for(let k=0;k<9;k++){const x=20+k*20;for(let j=0;j<6+(k%3)*2;j++)s+=`<circle cx="${x}" cy="${8+j*9}" r="4" fill="${j%2?c1:c2}"/>`;}return s;}
+function balloons(){const cs=['#e6b7c6','#d4a373','#ffffff','#c98ba3','#bfa27a'];let s='';for(let i=0;i<40;i++){const a=Math.PI*2*i/40,r=62+(i%3)*6;s+=`<circle cx="${100+r*Math.cos(a)}" cy="${118+r*Math.sin(a)}" r="${10+(i%4)*2}" fill="${cs[i%5]}" opacity=".95"/>`;}return s+`<text x="100" y="124" text-anchor="middle" font-family="Great Vibes" font-size="24" fill="#9c5b6f">Happy Birthday</text>`;}
+function ganesha(){return `<rect x="45" y="40" width="110" height="130" rx="8" fill="#1f5a2c" stroke="#f6d27a" stroke-width="3"/><g fill="none" stroke="#f6d27a" stroke-width="3" stroke-linecap="round"><path d="M100 75c-14 0-20 12-14 22s16 8 16 20-10 14-16 8"/><circle cx="100" cy="68" r="6"/><path d="M84 88c-10-4-14 6-8 10M116 88c10-4 14 6 8 10"/></g>`+hangers('#ff8c1a','#ffd23f');}
+function drapes(){let s='';for(let i=0;i<6;i++)s+=`<path d="M${i*34} 0q17 60 34 0" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="8"/>`;s+=`<path d="M0 0h200v30q-50 40-100 0t-100 0z" fill="#ffd166" opacity=".9"/>`;for(let i=0;i<5;i++)s+=flower(30+i*35,60,10,'#b3122e','#ffd166');return s;}
+function door(){let s=`<rect x="62" y="40" width="76" height="155" rx="4" fill="#7a3e12"/><rect x="70" y="50" width="28" height="135" fill="#8f4b19"/><rect x="102" y="50" width="28" height="135" fill="#8f4b19"/>`;const cs=['#ff3b5c','#ffd23f','#ff8c1a','#ffffff','#9b5de5'];for(let i=0;i<34;i++){const t=i/33,x=i<9?50:i<25?50+((i-9)/16)*100:150,y=i<9?195-i*18:i<25?30:30+(i-25)*18;s+=`<circle cx="${x}" cy="${y}" r="8" fill="${cs[i%5]}"/>`;}return s;}
+const ILL={
+  arch:()=>arch('#fbe3ea','#f4b6c6','#e0486b')+sofa('#c79a5b','#f6e3c2'),
+  haldi:()=>hangers('#ff8c1a','#ffd23f')+`<path d="M40 200q60-70 120 0" fill="#3f7d3a"/><circle cx="100" cy="150" r="22" fill="#ffd23f"/>`+sofa('#a8652a','#ffd166'),
+  green:()=>ganesha(),
+  drape:()=>drapes()+sofa('#f6e3c2','#ffffff'),
+  royal:()=>arch('#ffffff','#e9f5e1','#f6d27a')+sofa('#b38446','#f8eedd'),
+  balloon:()=>balloons(),
+  door:()=>door(),
+  night:()=>arch('#ff3d77','#ffd23f','#fff')+`<g fill="#fff8c7">${Array.from({length:30},(_,i)=>`<circle cx="${(i*37)%200}" cy="${(i*53)%120}" r="1.6"/>`).join('')}</g>`+sofa('#d4af37','#fff3cf'),
+};
+const U=(id,w=900)=>`https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=75`;
+function paint(el){
+  const k=el.dataset.art,src=el.dataset.img;
+  const ill=()=>el.insertAdjacentHTML('afterbegin',`<svg class="ill" viewBox="0 0 200 220" preserveAspectRatio="xMidYMid slice">${(ILL[k]||ILL.arch)()}</svg>`);
+  if(!src)return ill();
+  const im=new Image();im.alt=el.dataset.alt||'Vaidehi Events decoration';im.loading='lazy';im.decoding='async';
+  im.style.opacity=0;im.style.transition='opacity .8s';im.onload=()=>im.style.opacity=1;im.onerror=()=>{im.remove();ill();};
+  im.src=src.startsWith('images/')||src.startsWith('http')?src:U(src);el.appendChild(im);
+}
+
+/* ---------- Data ---------- */
+/* Photos: free-to-use Unsplash images. To use Vaidehi's own photos, replace an ID with a path like 'images/stage1.jpg' */
+const services=[
+ ['Weddings','పెళ్లి','t-floral','arch','Mandap, reception stage, floral arches and complete venue décor.','1587271636175-90d58cdad458'],
+ ['Haldi & Mehendi','హల్దీ','t-marigold','haldi','Marigold curtains, banana-leaf corners and bright, happy setups.','1681717166573-f71589207785'],
+ ['Engagement','నిశ్చితార్థం','t-ivory','royal','Royal sofa stages with white floral arches and warm lights.','1745573674206-1d4805fcc427'],
+ ['Birthday Parties','పుట్టినరోజు','t-balloon','balloon','Balloon arches, themed backdrops and cake tables.','1741969494307-55394e3e4071'],
+ ['House Warming','గృహప్రవేశం','t-marigold','door','Flower-covered entrances, torans and pooja-room décor.','1744891471118-f74c0453cd21'],
+ ['Mangala Snanam','మంగళ స్నానం','t-drape','drape','Traditional setups with drapes, kalash and fresh flowers.','1661893944387-1347f1b01f59'],
+ ['Pooja & Festivals','పూజలు','t-green','green','Ganesh, Diwali and Navaratri backdrops and green walls.','1662031225146-42e30158e800'],
+ ['Half Saree & Cradle','ఓణీల వేడుక','t-night','night','Pretty, personal décor for family milestone functions.','1698460918119-7359a8a945a0'],
+];
+const sig=[['Floral Arch Royal Stage','Wedding · Reception','t-ivory','royal','1745573673583-a51f665ae48e'],['Marigold Seating Lounge','Haldi · Pellikoduku','t-marigold','haldi','1790808415655-7633deb022d2'],['Ganesh Pooja Mandir','Pooja','t-green','green','1631556373338-52e31188effc'],['Grand Draped Stage','Function Hall','t-drape','drape','1745573672923-6cf4c5979dd2'],['Flower Toran Welcome','House Warming','t-marigold','door','1589463349208-95817c91f971'],['Balloon Dream Wall','Birthday','t-balloon','balloon','1560128411-79892dd93bf8']];
+const gal=[['wedding','Floral canopy wedding','t-floral','arch',1.25,'1587271407850-8d438ca9fdf2'],['haldi','Haldi bride with garland','t-marigold','haldi',1.3,'1681717075175-19feb7a6f664'],['pooja','Ganesh with pearls & petals','t-green','green',1.35,'1598209437948-3f0ae8a0e45d'],['birthday','Birthday banner & balloons','t-balloon','balloon',1,'1643175816971-a463dee6ae61'],['wedding','Floral aisle & arch','t-ivory','royal',1.3,'1772127822552-ce9ef537bdcf'],['home','Marigold & jasmine strings','t-marigold','door',1.2,'1789971649660-eefc756ee5dd'],['wedding','Chandelier reception stage','t-drape','drape',1,'1708606811579-23b18fc48007'],['pooja','Diwali diya décor','t-night','night',1.25,'1577083753695-e010191bacb5'],['haldi','Haldi ritual setup','t-marigold','haldi',1,'1670774837214-21b88943a6bb'],['wedding','Reception stage','t-floral','arch',1.3,'1745573673786-d462f0ac2690'],['birthday','Golden balloon table','t-balloon','balloon',1.25,'1604668915840-580c30026e5f'],['home','Courtyard function décor','t-green','green',1,'1744891470493-44321ef136a2']];
+
+/* ---------- Build ---------- */
+$('#svcGrid').innerHTML=services.map((s,i)=>`<div class="svc reveal d${i%4}"><div class="art ${s[2]}" data-art="${s[3]}" data-img="${s[5]}" data-alt="${s[0]} decoration"></div><div class="shine"></div><div class="body"><div class="num">0${i+1}</div><h3>${s[0]}</h3><div class="te">${s[1]}</div><p>${s[4]}</p></div></div>`).join('');
+$('#hs').innerHTML=sig.map(s=>`<div class="sig"><div class="art ${s[2]}" data-art="${s[3]}" data-img="${s[4]}"></div><div class="cap"><span>${s[1]}</span><b>${s[0]}</b></div></div>`).join('');
+$('#gal').innerHTML=gal.map((g,i)=>`<div class="g-item reveal" data-c="${g[0]}" data-t="${g[1]}"><div class="box" style="aspect-ratio:1/${g[4]}"><div class="art ${g[2]}" data-art="${g[3]}" data-img="${g[5]}" data-alt="${g[1]}"></div></div><span class="lbl">${g[1]}</span></div>`).join('');
+$$('.art').forEach(paint);
+const mqItems=['Weddings','Haldi','Engagement','Birthday Parties','House Warming','Mangala Snanam','Half Saree','Cradle Ceremony','Ganesh Pooja','Diwali Décor','Balloon Décor','Flower Décor'];
+const mqHTML=mqItems.map(t=>`<span>${t}</span>`).join('');$('#mq').innerHTML=mqHTML+mqHTML;
+$('#yr').textContent=new Date().getFullYear();
+
+/* Hero char split */
+$$('[data-split]').forEach(el=>{let d=0;const base=el.closest('.line')===el?0:12;el.innerHTML=[...el.textContent].map(c=>c===' '?' ':`<span class="ch" style="transition-delay:${.35+(base+d++)*.045}s">${c}</span>`).join('');});
+
+/* Garlands & toran */
+(function(){
+  const n=mobile?4:6,g=$('#garlands');let h='';
+  for(let i=0;i<n;i++){if(i===n/2)h+='</div><div class="grp">';const edge=Math.min(i,n-1-i);const len=(mobile?6:9)+(2-edge)*(mobile?2:3);let c='';for(let j=0;j<len;j++)c+=`<circle cx="9" cy="${10+j*13}" r="7.5" fill="${j%3===2?'#ffd23f':'#ff8c1a'}"/><circle cx="9" cy="${10+j*13}" r="3" fill="${j%3===2?'#ff8c1a':'#c2410c'}" opacity=".7"/>`;c+=`<path d="M9 ${10+len*13}q-9 10 0 24q9-14 0-24z" fill="#2f6b3a"/>`;h+=`<div class="garland" style="animation-delay:${-i*.7}s;animation-duration:${4+(i%3)}s"><svg width="18" height="${len*13+40}">${c}</svg></div>`;}
+  g.innerHTML='<div class="grp">'+h+'</div>';
+  const t=$('#toran'),W=1200;t.setAttribute('viewBox',`0 0 ${W} 56`);let s=`<path d="M0 6h${W}" stroke="#f6d27a" stroke-width="2"/>`;
+  for(let x=10;x<W;x+=26)s+=`<path d="M${x} 6q-9 20 0 42q9-22 0-42z" fill="${(x/26|0)%2?'#2f6b3a':'#3f8a47'}"/><circle cx="${x+13}" cy="12" r="6" fill="${(x/26|0)%2?'#ff8c1a':'#ffd23f'}"/>`;
+  t.innerHTML=s;
+})();
+
+/* Petals canvas */
+(function(){
+  const c=$('#petals'),x=c.getContext('2d');let W,H,P=[];const dpr=Math.min(devicePixelRatio||1,2);
+  const cols=['#ff8c1a','#ffd23f','#ff3d77','#ffb3c1','#f6d27a','#e0486b'];
+  function size(){W=c.clientWidth;H=c.clientHeight;c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0);}
+  size();addEventListener('resize',size);
+  const N=reduce?0:(mobile?28:55);
+  for(let i=0;i<N;i++)P.push(mk(true));
+  function mk(init){return{x:Math.random()*W,y:init?Math.random()*H:-20,r:4+Math.random()*7,vy:.5+Math.random()*1.1,vx:-.3+Math.random()*.6,a:Math.random()*6.28,va:-.03+Math.random()*.06,sw:Math.random()*6.28,c:cols[Math.random()*cols.length|0],o:.55+Math.random()*.4};}
+  let visible=true;new IntersectionObserver(e=>visible=e[0].isIntersecting).observe(c);
+  (function loop(){requestAnimationFrame(loop);if(!visible)return;x.clearRect(0,0,W,H);
+    P.forEach((p,i)=>{p.sw+=.02;p.x+=p.vx+Math.sin(p.sw)*.6;p.y+=p.vy;p.a+=p.va;if(p.y>H+20)P[i]=mk();
+      x.save();x.translate(p.x,p.y);x.rotate(p.a);x.globalAlpha=p.o;x.fillStyle=p.c;x.beginPath();x.ellipse(0,0,p.r,p.r*.55*Math.abs(Math.cos(p.sw*2))+1,0,0,6.28);x.fill();x.restore();});
+  })();
+})();
+
+/* Loader */
+addEventListener('load',()=>setTimeout(()=>{$('#loader').classList.add('done');document.body.classList.add('loaded');},reduce?0:1700));
+setTimeout(()=>{$('#loader').classList.add('done');document.body.classList.add('loaded');},4500);
+
+/* Scroll effects */
+const nav=$('#nav'),prog=$('#progress'),mbar=$('#mbar');
+function onScroll(){const y=scrollY,h=document.documentElement.scrollHeight-innerHeight;prog.style.width=(y/h*100)+'%';nav.classList.toggle('scrolled',y>40);mbar.classList.toggle('show',y>innerHeight*.6);
+  if(!reduce){const m=$$('.mandala');m[0].style.marginTop=y*.25+'px';m[1].style.marginTop=y*.12+'px';}}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* Reveal + counters */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);
+  e.target.querySelectorAll('[data-count]').forEach(n=>{const to=+n.dataset.count,t0=performance.now();(function f(t){const k=Math.min((t-t0)/1800,1);n.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f);})(t0);});
+}}),{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+$$('.reveal').forEach(el=>io.observe(el));
+
+/* Cursor glow + tilt */
+const glow=$('#glow');addEventListener('pointermove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px';});
+$$('.svc').forEach(card=>{
+  card.addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;const r=card.getBoundingClientRect(),px=(e.clientX-r.left)/r.width,py=(e.clientY-r.top)/r.height;card.style.transform=`perspective(900px) rotateY(${(px-.5)*10}deg) rotateX(${(.5-py)*10}deg)`;card.style.setProperty('--mx',px*100+'%');card.style.setProperty('--my',py*100+'%');});
+  card.addEventListener('pointerleave',()=>card.style.transform='');
+  card.addEventListener('click',()=>card.classList.toggle('open'));
+});
+
+/* Menu */
+$('#burger').onclick=()=>document.body.classList.toggle('menu-open');
+$$('#mmenu a').forEach((a,i)=>{a.style.transitionDelay=(.25+i*.07)+'s';a.onclick=()=>document.body.classList.remove('menu-open');});
+
+/* Horizontal scroller */
+const hs=$('#hs');const step=()=>hs.querySelector('.sig').offsetWidth+24;
+$('#hsNext').onclick=()=>hs.scrollBy({left:step(),behavior:'smooth'});$('#hsPrev').onclick=()=>hs.scrollBy({left:-step(),behavior:'smooth'});
+
+/* Gallery filter + lightbox */
+$$('#filters button').forEach(b=>b.onclick=()=>{$$('#filters button').forEach(x=>x.classList.remove('on'));b.classList.add('on');const f=b.dataset.f;
+  $$('.g-item').forEach(it=>{const show=f==='all'||it.dataset.c===f;it.classList.toggle('hide',!show);if(show){it.classList.remove('in');requestAnimationFrame(()=>requestAnimationFrame(()=>it.classList.add('in')));}});});
+const lb=$('#lightbox'),lbIn=$('#lbIn');
+$$('.g-item').forEach(it=>it.onclick=()=>{lbIn.innerHTML=it.querySelector('.art').outerHTML+`<div class="lb-cap">${it.dataset.t}</div>`;lb.classList.add('on');});
+lb.onclick=e=>{if(e.target===lb||e.target.classList.contains('x'))lb.classList.remove('on');};
+addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('on');});
+
+/* Testimonials */
+const tt=$('#tt'),n=tt.children.length,dots=$('#dots');let ti=0;
+dots.innerHTML=Array.from({length:n},(_,i)=>`<button aria-label="Review ${i+1}"></button>`).join('');
+function go(i){ti=(i+n)%n;tt.style.transform=`translateX(-${ti*100}%)`;[...dots.children].forEach((d,k)=>d.classList.toggle('on',k===ti));}
+[...dots.children].forEach((d,i)=>d.onclick=()=>go(i));go(0);let timer=setInterval(()=>go(ti+1),5500);
+let sx=0;tt.addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});
+tt.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40){go(ti+(dx<0?1:-1));clearInterval(timer);}});
+
+/* Package -> form */
+$$('[data-pkg]').forEach(b=>b.addEventListener('click',()=>{$('#fm').value=`Interested in the ${b.dataset.pkg} package. `;}));
+
+/* Enquiry -> WhatsApp */
+$('#enq').onsubmit=e=>{e.preventDefault();
+  const t=document.querySelector('input[name=type]:checked').value;
+  const msg=`Namaste Vaidehi Events!\n\nEvent: ${t}\nName: ${$('#fn').value}\nPhone: ${$('#fp').value}\nDate: ${$('#fd').value||'-'}\nVenue: ${$('#fv').value||'-'}\nDetails: ${$('#fm').value||'-'}`;
+  open('https://wa.me/918500878184?text='+encodeURIComponent(msg),'_blank');};
+})();
+</script>
+</body>
+</html>
